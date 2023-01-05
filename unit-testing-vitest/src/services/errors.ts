@@ -9,3 +9,9 @@ export class endDateBeforeStart extends Error {
     super(msg);
   }
 }
+
+export class itAlreadyExists extends Error {
+  constructor(msg: string) {
+    super(msg);
+  }
+}

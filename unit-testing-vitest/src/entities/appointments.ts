@@ -28,10 +28,24 @@ export class Appointment {
       throw new startAtPast("Start date must be future");
     }
 
-    if (endAt <= startAt) {
+    if (endAt < startAt) {
       throw new endDateBeforeStart("End date must be after start date");
     }
 
     this.props = props;
   }
 }
+
+const startAtFuture = new Date();
+startAtFuture.setDate(startAtFuture.getDate() + 1);
+
+const past = new Date();
+past.setDate(past.getDate() + 8);
+
+export const appointmentsArr: Appointment[] = [
+  new Appointment({
+    customer: "Felipe",
+    startAt: startAtFuture,
+    endAt: past,
+  }),
+];

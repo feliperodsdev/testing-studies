@@ -22,6 +22,7 @@ test("cannot an appointment with end date before start date", () => {
   const endDate = new Date();
 
   endDate.setDate(endDate.getDate() - 1);
+  startDate.setDate(startDate.getDate() + 1);
 
   expect(
     () =>

@@ -1,5 +1,5 @@
-import { Appointment } from "../entities/appointments";
-import { startAtPast } from "./errors";
+import { Appointment, appointmentsArr } from "../entities/appointments";
+import { startAtPast, itAlreadyExists } from "./errors";
 
 interface CreateAppointmentRequest {
   customer: string;
@@ -16,14 +16,20 @@ export class CreateAppointment {
     try {
       const { customer, startAt, endAt } = request;
 
+      for (let i = 0; i < appointmentsArr.length; i++) {
+        if (appointmentsArr[i].startAt == startAt)
+          throw new itAlreadyExists("cannot create in that date");
+      }
+
       const appointment = new Appointment({ customer, startAt, endAt });
 
       return appointment;
     } catch (e) {
       if (e instanceof startAtPast) {
         return "oops";
+      } else {
+        return "a";
       }
-      return "tome";
     }
   }
 }
