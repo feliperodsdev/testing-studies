@@ -1,4 +1,4 @@
-import { startAtPast, std } from "../services/errors";
+import { startAtPast, endDateBeforeStart } from "../services/errors";
 
 interface AppointmentProps {
   customer: string;
@@ -25,11 +25,11 @@ export class Appointment {
     const { startAt, endAt } = props;
 
     if (startAt < new Date()) {
-      throw new std("Start date must be future");
+      throw new startAtPast("Start date must be future");
     }
 
     if (endAt <= startAt) {
-      throw new Error("End date must be after start date");
+      throw new endDateBeforeStart("End date must be after start date");
     }
 
     this.props = props;

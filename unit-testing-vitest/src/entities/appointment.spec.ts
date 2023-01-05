@@ -1,5 +1,5 @@
 import { expect, test } from "vitest";
-import { startAtPast, std } from "../services/errors";
+import { startAtPast, endDateBeforeStart } from "../services/errors";
 import { Appointment } from "./appointments";
 
 test("create an appointment", () => {
@@ -30,7 +30,7 @@ test("cannot an appointment with end date before start date", () => {
         startAt: startDate,
         endAt: endDate,
       })
-  ).toThrow();
+  ).toThrow(endDateBeforeStart);
 });
 
 test("cannot an appointment with start date before now", () => {
@@ -47,5 +47,5 @@ test("cannot an appointment with start date before now", () => {
         startAt: startDate,
         endAt: endDate,
       })
-  ).toThrow(std);
+  ).toThrow(startAtPast);
 });

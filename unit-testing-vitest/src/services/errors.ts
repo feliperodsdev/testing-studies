@@ -4,7 +4,7 @@ export class startAtPast extends Error {
   }
 }
 
-export class std extends Error {
+export class endDateBeforeStart extends Error {
   constructor(msg: string) {
     super(msg);
   }
